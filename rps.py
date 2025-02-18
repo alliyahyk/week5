@@ -1,16 +1,20 @@
 # importing random module to generate computer choice
 import random
 
-# using a dictionary for RPS to associate the letter to the word
-choices = {'R': 'Rock', 'P': 'Paper', 'S': 'Scissors'}
 
-# starting the game
-# this variable will prompt the user to enter their choice
-player_choice = input('Please choose Rock (R), Paper (P) or Scissors (S): ')
-
-# This will prompt the user to enter their choice again if wrong
-while player_choice not in choices:
+def get_user_choice():
+    # global choices, player_choice
+    # using a dictionary for RPS to associate the letter to the word
+    choices = {'R': 'Rock', 'P': 'Paper', 'S': 'Scissors'}
+    # starting the game
+    # this variable will prompt the user to enter their choice
+    player_choice = input('Please choose Rock (R), Paper (P) or Scissors (S): ')
+    # This will prompt the user to enter their choice again if wrong
+    while player_choice not in choices:
         player_choice = input('Please enter R, P or S: ')
+    return player_choice
+
+
 
 # this will be how the computer generates its choice
 # this variable is using .choice() method to select a choice from the dictionary
@@ -21,7 +25,7 @@ computer_choice = random.choice(list(choices.keys()))
 # variables for the numbers i.e r = 0 
 
 # FUNCTION
-def game(player_choice, computer_choice):
+def determine_winner(player_choice, computer_choice):
     choices = {'R': 'Rock', 'P': 'Paper', 'S': 'Scissors'}
     # computer_choice = random.choice(list(choices.keys()))
     # different playing scenarios:
@@ -44,7 +48,9 @@ def game(player_choice, computer_choice):
         else:
             return "You lose! Scissors cut Paper."
 
-result = game(player_choice, computer_choice)
+
+player_choice = get_user_choice()
+result = determine_winner(player_choice, computer_choice)
 print(f'You chose: {player_choice}')
 print(f'The computer chose: {computer_choice}')
 print(result)
